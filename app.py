@@ -48,8 +48,9 @@ def keyword_rely(receive_text):
             state = state_mapping['find_member']
             reply_text = '請輸入欲查詢選手名稱'
         else:
+            print("錯誤的輸入")
             reply_text = '請輸入所需功能'
-    if state == state_mapping['find_member']:
+    elif state == state_mapping['find_member']:
         #reply_text = crawl_player_data(receive_text)
         state = state_mapping['main_page']
         print("功能尚未完成")
