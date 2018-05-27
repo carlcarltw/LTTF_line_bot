@@ -52,6 +52,7 @@ def keyword_rely(receive_text):
     if state == state_mapping['find_member']:
         #reply_text = crawl_player_data(receive_text)
         state = state_mapping['main_page']
+        print("功能尚未完成")
     return reply_text
 
 
