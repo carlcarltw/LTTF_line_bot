@@ -59,7 +59,7 @@ def keyword_rely(receive_text):
 
 
 #爬取姓名欄位
-def crawl_player_data():
+#def crawl_player_data():
 
 
 
