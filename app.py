@@ -34,11 +34,38 @@ def callback():
         abort(400)
 
     return 'OK'
+state_mapping = {
+    'main_page':'0',
+    'find_member':'1'
+}
+state = state_mapping['main_page']
+#關鍵字回覆
+def keyword_rely(receive_text):
+    reply_text = '請重新輸入'
+    global state
+    if state == state_mapping['main_page']:
+        if receive_text == '查詢選手':
+            state = state_mapping['find_member']
+            reply_text = '請輸入欲查詢選手名稱'
+        else:
+            reply_text = '請輸入所需功能'
+    if state == state_mapping['find_member']:
+        #reply_text = crawl_player_data(receive_text)
+        state = state_mapping['main_page']
+    return reply_text
+
+
+
+
+
+#爬取姓名欄位
+def crawl_player_data():
+
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
+    message = TextSendMessage(text=keyword_rely(event.message.text))
     line_bot_api.reply_message(
         event.reply_token,
         message)
