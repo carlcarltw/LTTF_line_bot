@@ -67,7 +67,7 @@ def keyword_rely(receive_text):
 def handle_message(event):
     message = TextSendMessage(text=keyword_rely(event.message.text))
     line_bot_api.reply_message(
-        '<reply_token>',
+        event.reply_token,
         message)
 
 import os
