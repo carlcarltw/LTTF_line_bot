@@ -66,7 +66,7 @@ def keyword_rely(receive_text):
 #爬取姓名欄位
 def crawl_player_data(player_name):
     url = 'http://www.twlttf.org/lttfproject/playerprofiles/search?utf8=✓&keyword='
-    res = requests.get(url+name)
+    res = requests.get(url+player_name)
     soup = BeautifulSoup(res.text,'lxml')
     data_tr = soup.select(".datatable tbody tr")
     players = list()
