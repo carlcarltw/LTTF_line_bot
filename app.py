@@ -49,7 +49,7 @@ def keyword_rely(receive_text):
     if state == state_mapping['main_page']:
         if receive_text == '查詢會員':
             state = state_mapping['find_member']
-            reply_text = '請輸入欲查詢選手名稱'
+            reply_text = '請輸入欲查詢會員名稱'
         else:
             print("錯誤的輸入")
             reply_text = '請輸入所需功能'
