@@ -67,12 +67,12 @@ def keyword_rely(receive_text):
 def crawl_player_data(player_name):
     url = 'http://www.twlttf.org/lttfproject/playerprofiles/search?utf8=✓&keyword='
     res = requests.get(url+player_name)
-    soup = BeautifulSoup(res.text,'lxml')
+    soup = BeautifulSoup(res.text,'html.parser')
     data_tr = soup.select(".datatable tbody tr")
     players = list()
     for column in data_tr:
         tds = column.find_all('td')
-        #col[:] = col
+        col = list()
         col.append(tds[0].find('img')['src'])
         col.append(tds[1].getText())
         col.append(tds[2].find('a').find('font').getText())
