@@ -47,7 +47,7 @@ def keyword_rely(receive_text):
     reply_text = '回到初始頁面，請重新選取功能'
     global state
     if state == state_mapping['main_page']:
-        if receive_text == '查詢選手':
+        if receive_text == '查詢會員':
             state = state_mapping['find_member']
             reply_text = '請輸入欲查詢選手名稱'
         else:
