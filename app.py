@@ -92,9 +92,9 @@ def crawl_player_data(player_name):
 def player_state(players):
     player_data = ''
     for player in players:
-        player_data += '會員編號： '+player[1]+', 會員姓名： '+ player[2] + \
-        ', 目前積分： ' + player[3] + ', 初始積分： ' + player[4] + ', 總勝場數： ' \
-        + player[5] + ', 總敗場數： ' + player[6]+'\n'
+        player_data += '會員編號： '+player[1]+'\n會員姓名： '+ player[2] + \
+        '\n目前積分： ' + player[3] + '\n初始積分： ' + player[4] + '\n總勝場數： ' \
+        + player[5] + '\n總敗場數： ' + player[6]+'\n\n'
     print(player_data)
     return player_data
 
