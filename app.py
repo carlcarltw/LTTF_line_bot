@@ -41,7 +41,7 @@ state_mapping = {
 state = state_mapping['main_page']
 #關鍵字回覆
 def keyword_rely(receive_text):
-    reply_text = '請重新輸入'
+    reply_text = '回到初始頁面，請重新選取功能'
     global state
     if state == state_mapping['main_page']:
         if receive_text == '查詢選手':
@@ -51,9 +51,9 @@ def keyword_rely(receive_text):
             print("錯誤的輸入")
             reply_text = '請輸入所需功能'
     elif state == state_mapping['find_member']:
-        #reply_text = crawl_player_data(receive_text)
+        reply_text = player_state(crawl_player_data(receive_text))
         state = state_mapping['main_page']
-        print("功能尚未完成")
+        #print("功能尚未完成")
     return reply_text
 
 
@@ -61,8 +61,39 @@ def keyword_rely(receive_text):
 
 
 #爬取姓名欄位
-#def crawl_player_data():
+def crawl_player_data(player_name):
+    url = 'http://www.twlttf.org/lttfproject/playerprofiles/search?utf8=✓&keyword='
+    res = requests.get(url+name)
+    soup = BeautifulSoup(res.text,'lxml')
+    data_tr = soup.select(".datatable tbody tr")
+    players = list()
+    for column in data_tr:
+        tds = column.find_all('td')
+        #col[:] = col
+        col.append(tds[0].find('img')['src'])
+        col.append(tds[1].getText())
+        col.append(tds[2].find('a').find('font').getText())
+        col.append(tds[3].find('font').getText())
+        col.append(tds[4].getText())
+        col.append(tds[5].getText())
+        col.append(tds[6].getText())
+        col_ = list(col)
+        players.append(col_)
+        #player[len(player):len(player)+1] = col
+        #print(col, end  = '')
+        #print('\n')
+        col.clear()
+    return players
 
+#def player_photo(players):
+def player_state(players):
+    player_data = ''
+    for player in players:
+        player_data += '會員編號： '+player[1]+', 會員姓名： '+ player[2] + \
+        ', 目前積分： ' + player[3] + ', 初始積分： ' + player[4] + ', 總勝場數： ' \
+        + player[5] + ', 總敗場數： ' + player[6]+'\n'
+    print(player_data)
+    return player_data
 
 
 @handler.add(MessageEvent, message=TextMessage)
