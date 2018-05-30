@@ -40,7 +40,7 @@ def callback():
 state_mapping = {
     'main_page':'0',
     'find_member':'1',
-    'find_playground'
+    'find_playground':'2'
 }
 state = state_mapping['main_page']
 #關鍵字回覆
