@@ -71,7 +71,7 @@ def keyword_rely(receive_text):
         state = state_mapping['main_page']
         #print("功能尚未完成")
     elif state == state_mapping['find_playground']:
-        crawl_courts_data(receive_text)
+        print(crawl_courts_data(receive_text))
         reply_text = '功能尚未完成'
     return reply_text
 
