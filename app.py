@@ -128,7 +128,7 @@ def crawl_courts_data(courts_name):
     chrome_driver = os.getcwd() +"/chromedriver"
 
     # go to Google and click the I'm Feeling Lucky button
-    broswer = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    browser = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
     browser.get('http://www.twlttf.org/lttfproject/ttcourts')
     html = browser.page_source
     browser.close()
