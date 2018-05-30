@@ -120,11 +120,10 @@ def crawl_courts_data(courts_name):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920x1080")
     chrome_options.add_argument('--disable-setuid-sandbox')
-    chrome_options.binary_location = '/app/.apt/usr/bin/google-chrome'
 
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads and put it in the
     # current directory
-    chrome_driver = os.getcwd() +"/.chromedriver/bin/chromedriver"
+    chrome_driver = os.getcwd() +"/.apt/usr/bin/google-chrome"
 
     # go to Google and click the I'm Feeling Lucky button
     broswer = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
@@ -146,7 +145,6 @@ def crawl_courts_data(courts_name):
         city_addr.append(addr.find('li').text)
     #print(city_addr[0])
     #print(html)
-
 
     courts = [city_name,city_addr]
     print(courts)
