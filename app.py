@@ -18,6 +18,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import os
 
 app = Flask(__name__)
 
@@ -67,7 +70,8 @@ def keyword_rely(receive_text):
         reply_text = player_state(crawl_player_data(receive_text))
         state = state_mapping['main_page']
         #print("功能尚未完成")
-    elif state == state_mapping[find_playground]:
+    elif state == state_mapping['find_playground']:
+        crawl_courts_data(receive_text)
         reply_text = '功能尚未完成'
     return reply_text
 
@@ -109,6 +113,40 @@ def player_state(players):
         + player[5] + '\n總敗場數： ' + player[6]+'\n\n'
     print(player_data)
     return player_data
+
+def crawl_courts_data(courts_name):
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920x1080")
+
+    # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads and put it in the
+    # current directory
+    chrome_driver = os.getcwd() +"\\chromedriver.exe"
+
+    # go to Google and click the I'm Feeling Lucky button
+    broswer = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    browser.get('http://www.twlttf.org/lttfproject/ttcourts')
+    html = browser.page_source
+    browser.close()
+    usr_input = courts_name
+    city = re.compile(usr_input)
+
+    soup = BeautifulSoup(html,'html.parser')
+    table = soup.select('.map_pagecontainer #sidebar_container #ttcourtslist')
+    city_ = table[0].find('font', text = city).parent.parent
+    city_.select('ul li font')
+    city_name = list()
+    for name in city_.select('ul li font'):
+        city_name.append(name.text)
+    city_addr = list()
+    for addr in city_.select('ul li ul'):
+        city_addr.append(addr.find('li').text)
+    #print(city_addr[0])
+    #print(html)
+
+    courts = [city_name,city_addr]
+    print(courts)
+
 
 
 @handler.add(MessageEvent, message=TextMessage)
