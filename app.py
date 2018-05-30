@@ -61,7 +61,8 @@ def keyword_rely(receive_text):
         reply_text = player_state(crawl_player_data(receive_text))
         state = state_mapping['main_page']
         #print("功能尚未完成")
-    elif sta
+    elif state == state_mapping[find_playground]:
+        reply_text = '功能尚未完成'
     return reply_text
 
 
