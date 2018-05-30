@@ -12,6 +12,12 @@ from linebot.models import (
 
 import requests
 from bs4 import BeautifulSoup
+import re
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 app = Flask(__name__)
 
@@ -39,7 +45,8 @@ def callback():
     return 'OK'
 state_mapping = {
     'main_page':'0',
-    'find_member':'1'
+    'find_member':'1',
+    'find_playground'
 }
 state = state_mapping['main_page']
 #關鍵字回覆
@@ -50,6 +57,9 @@ def keyword_rely(receive_text):
         if receive_text == '查詢會員':
             state = state_mapping['find_member']
             reply_text = '請輸入欲查詢會員名稱'
+        elif receive_text == '查詢場地':
+            state = state_mapping['find_playground']
+            reply_text = '輸入縣市名稱, '
         else:
             print("錯誤的輸入")
             reply_text = '請輸入所需功能'
@@ -57,6 +67,7 @@ def keyword_rely(receive_text):
         reply_text = player_state(crawl_player_data(receive_text))
         state = state_mapping['main_page']
         #print("功能尚未完成")
+    elif sta
     return reply_text
 
 
