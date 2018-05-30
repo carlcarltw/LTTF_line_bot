@@ -74,6 +74,7 @@ def keyword_rely(receive_text):
         print('loading...')
         crawl_courts_data(receive_text)
         reply_text = '功能尚未完成'
+        state = state_mapping['main_page']
     return reply_text
 
 
