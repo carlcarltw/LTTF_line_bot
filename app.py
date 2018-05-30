@@ -147,6 +147,7 @@ def crawl_courts_data(courts_name):
     #print(city_addr[0])
     #print(html)
 
+
     courts = [city_name,city_addr]
     print(courts)
 
