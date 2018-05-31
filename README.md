@@ -4,11 +4,11 @@
 
 1. 查詢桌盟成員資訊
 
-   [操作說明](https://imgur.com/a/2IdHn3g)
+   ![操作說明](https://i.imgur.com/mBGxd8x.png)
 
 2. 查詢打球場地
 
-   [操作說明](https://imgur.com/a/4nqz1a8)
+   [操作說明](https://i.imgur.com/jhkuYBI.png)
 
 *請勿必如圖示上一般輸入關鍵字*
 
@@ -16,5 +16,5 @@
 
 **QRcode**
 
-[QRcode](https://imgur.com/a/snWQc9K)
+![QRcode](https://i.imgur.com/OhHK9L0.png)
 
