@@ -54,7 +54,7 @@ state_mapping = {
 state = state_mapping['main_page']
 #關鍵字回覆
 def keyword_rely(receive_text):
-    reply_text = '回到初始頁面，請重新選取功能'
+    #reply_text = '回到初始頁面，請重新選取功能'
     global state
     if state == state_mapping['main_page']:
         if receive_text == '查詢會員':
@@ -65,15 +65,15 @@ def keyword_rely(receive_text):
             reply_text = '輸入縣市名稱, '
         else:
             print("錯誤的輸入")
-            reply_text = '請輸入所需功能'
+            reply_text = '請輸入所需功能（查詢會員，查詢場地）'
     elif state == state_mapping['find_member']:
         reply_text = player_state(crawl_player_data(receive_text))
         state = state_mapping['main_page']
         #print("功能尚未完成")
     elif state == state_mapping['find_playground']:
-        print('loading...')
-        crawl_courts_data(receive_text)
-        reply_text = '功能尚未完成'
+        #print('loading...')
+        reply_text = crawl_courts_data(receive_text)
+        #reply_text = '功能尚未完成'
         state = state_mapping['main_page']
     return reply_text
 
@@ -150,7 +150,13 @@ def crawl_courts_data(courts_name):
 
 
     courts = [city_name,city_addr]
-    print(courts)
+    reply_courts = ''
+    for x in range(0,len(courts[0])):
+        reply_courts += courts[0][x]+'\n'+courts[1][x]+'\n\n'
+    print(reply_courts)
+    #reply_courts = ''
+
+    return reply_courts
 
 
 
