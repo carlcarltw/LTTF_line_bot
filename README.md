@@ -8,7 +8,7 @@
 
 2. 查詢打球場地
 
-   [操作說明](https://i.imgur.com/jhkuYBI.png)
+   ![操作說明](https://i.imgur.com/jhkuYBI.png)
 
 *請勿必如圖示上一般輸入關鍵字*
 
